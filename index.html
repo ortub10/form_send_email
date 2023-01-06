@@ -6,10 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
+    <script src=" https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+      const sendEmail = () => {
+        Email.send({
+          Host: "smtp.elasticemail.com",
+          Username: "(username)",
+          Password: "(password)",
+          To: "(email)",
+          From: document.querySelector("#email").value,
+          Subject: "New Contact Form",
+          Body: `Name: ${document.querySelector("#name").value}
+          <br> Email: ${document.querySelector("#email").value}
+          <br> Phone number: ${document.querySelector("#phone").value}
+          <br> Message: ${document.querySelector("#message").value}`,
+        }).then((message) => alert(message));
+      };
+    </script>
   </head>
   <body>
     <div class="container">
-      <form>
+      <form onsubmit="sendEmail(); return false;">
         <h3>GET IN TOUCH</h3>
         <input type="text" id="name" placeholder="Your name" required />
         <input type="email" id="email" placeholder="Email id" required />
